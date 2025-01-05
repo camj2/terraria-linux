@@ -2,5 +2,5 @@
 exec \
   /home/server/.bin/terraria \
   -x /home/server/terraria/exec/TerrariaServer.exe \
-  -s /home/server/terraria/save/server.wld \
+  -s /home/server/terraria/save/Server.wld \
   x
