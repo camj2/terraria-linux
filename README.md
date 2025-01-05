@@ -51,21 +51,29 @@ xbps-install -R hostdir/binpkgs/nonfree mono
 
 ## Run
 
+### Start
+
 Launch the server (run as user):
 
 ```
 sv start terraria
 ```
 
-## `terraria`
+### Stop
 
-### save
-
-Save the server:
+First save the server:
 
 ```
 terraria s
 ```
+
+Then kill the server (after waiting a few seconds):
+
+```
+sv stop terraria
+```
+
+## `terraria`
 
 ### message
 
