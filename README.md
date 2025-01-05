@@ -4,7 +4,7 @@ Meant for [server](https://gitlab.com/camj/server).
 
 ## Download
 
-https://terraria.org/
+[PC Dedicated Server](https://terraria.org/)
 
 Copy server files to `server:~/terraria/exec/`.
 
@@ -21,7 +21,7 @@ rm mscorlib.dll
 
 ## Create
 
-Generate the Terraria world on PC and copy to `server:~/terraria/save/server.wld`.
+Generate the Terraria world on PC and copy to `server:~/terraria/save/Server.wld`.
 
 ## Void
 
