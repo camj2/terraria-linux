@@ -39,7 +39,11 @@ server_exec() {
 }
 
 server_send() {
-  screen -S terraria_server -X stuff 'say "'"$*"'"\n'
+  if [ -z "$1" ]; then
+    die "unknown message"
+  fi
+
+  screen -S terraria_server -X stuff "say \"${1}\"\n"
 }
 
 server_save() {
