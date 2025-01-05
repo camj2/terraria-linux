@@ -19,7 +19,7 @@ server_exec() {
   fi
 
   if [ "$GAME_HOST" != "x86_64" ]; then
-    exec screen -Dm -S terraria_server \
+    exec screen -Dm -S terraria \
       mono --server --gc=sgen -O=all \
       "$GAME_EXEC" \
       -world "$GAME_SAVE" \
@@ -28,7 +28,7 @@ server_exec() {
       -port 7777 \
       -noupnp
   else
-    exec screen -Dm -S terraria_server \
+    exec screen -Dm -S terraria \
       "$GAME_EXEC" \
       -world "$GAME_SAVE" \
       -password "$GAME_PASS" \
@@ -43,15 +43,15 @@ server_send() {
     die "unknown message"
   fi
 
-  screen -S terraria_server -X stuff "say \"${1}\"\n"
+  screen -S terraria -X stuff "say \"${1}\"\n"
 }
 
 server_save() {
-  screen -S terraria_server -X stuff 'save\n'
+  screen -S terraria -X stuff 'save\n'
 }
 
 server_exit() {
-  screen -S terraria_server -X stuff 'exit\n'
+  screen -S terraria -X stuff 'exit\n'
 }
 
 die() {
