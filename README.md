@@ -75,6 +75,11 @@ Send a message through the in-game chat:
 terraria m <message>
 ```
 
+## Note
+
+Terraria doesn't support
+[IPv6](https://forums.terraria.org/index.php?threads/ipv6-support.104448/post-2805121).
+
 ## LICENSE
 
 MIT
