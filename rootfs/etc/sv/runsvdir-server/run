@@ -1,0 +1,2 @@
+#!/bin/sh
+exec chpst -u server runsvdir /home/server/.sv

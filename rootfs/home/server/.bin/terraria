@@ -1,0 +1,93 @@
+#!/bin/sh
+
+# https://terraria.fandom.com/wiki/Server#Troubleshooting
+
+set -e
+
+GAME_HOST=$(uname -m)
+GAME_EXEC=
+GAME_SAVE=
+GAME_PASS='Server2011$' # default password
+
+server_exec() {
+  if [ ! -f "$GAME_EXEC" ]; then
+    die "exec not found"
+  fi
+
+  if [ ! -f "$GAME_SAVE" ]; then
+    die "save not found"
+  fi
+
+  if [ "$GAME_HOST" != "x86_64" ]; then
+    exec screen -Dm -S terraria_server \
+      mono --server --gc=sgen -O=all \
+      "$GAME_EXEC" \
+      -world "$GAME_SAVE" \
+      -password "$GAME_PASS" \
+      -players 10 \
+      -port 7777 \
+      -noupnp
+  else
+    exec screen -Dm -S terraria_server \
+      "$GAME_EXEC" \
+      -world "$GAME_SAVE" \
+      -password "$GAME_PASS" \
+      -players 10 \
+      -port 7777 \
+      -noupnp
+  fi
+}
+
+server_send() {
+  screen -S terraria_server -X stuff 'say "'"$*"'"\n'
+}
+
+server_save() {
+  screen -S terraria_server -X stuff 'save\n'
+}
+
+server_exit() {
+  screen -S terraria_server -X stuff 'exit\n'
+}
+
+die() {
+  printf "%s: %s\n" "${0##*/}" "$*" >&2
+  exit 1
+}
+
+while getopts :x:s:p opt; do
+  case $opt in
+    x)
+      GAME_EXEC="$OPTARG"
+      ;;
+    s)
+      GAME_SAVE="$OPTARG"
+      ;;
+    p)
+      GAME_PASS="$OPTARG"
+      ;;
+    *)
+      die "unknown option"
+      ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+case $1 in
+  x)
+    server_exec
+    ;;
+  m)
+    shift
+    server_send "$*"
+    ;;
+  s)
+    server_save
+    ;;
+  !)
+    server_exit
+    ;;
+  *)
+    die "unknown option"
+    ;;
+esac

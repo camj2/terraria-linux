@@ -1,0 +1,6 @@
+#!/bin/sh
+exec \
+  /home/server/.bin/terraria \
+  -x /home/server/terraria/exec/TerrariaServer.exe \
+  -s /home/server/terraria/save/server.wld \
+  x
