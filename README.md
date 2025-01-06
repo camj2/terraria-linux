@@ -37,6 +37,14 @@ Install `mono` if not using x86_64:
 xbps-install mono
 ```
 
+### Port
+
+Add the following to `/etc/nftables.conf`:
+
+```
+tcp dport 7777 accept
+```
+
 ### [Bug](https://github.com/void-linux/void-packages/issues/46881)
 
 From the server, compile and install `mono`:
