@@ -7,6 +7,10 @@ GAME_SAVE=
 GAME_PASS='Server2011$' # default password
 
 server_exec_unix() {
+  if ! pkg screen; then
+    die "screen not installed"
+  fi
+
   exec screen -Dm -S terraria \
     "$GAME_EXEC" \
     -world "$GAME_SAVE" \
@@ -17,6 +21,14 @@ server_exec_unix() {
 }
 
 server_exec_mono() {
+  if ! pkg screen; then
+    die "screen not installed"
+  fi
+
+  if ! pkg mono; then
+    die "mono not installed"
+  fi
+
   exec screen -Dm -S terraria \
     mono --server --gc=sgen -O=all \
     "$GAME_EXEC" \
@@ -65,6 +77,10 @@ server_save() {
 
 server_exit() {
   screen -S terraria -X stuff "exit\n"
+}
+
+pkg() {
+  command -v "$1" > /dev/null
 }
 
 die() {
