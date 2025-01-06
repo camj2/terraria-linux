@@ -4,7 +4,7 @@ set -e
 
 GAME_EXEC=
 GAME_SAVE=
-GAME_PASS='Server2011$' # default password
+GAME_PASS='Server2011$'
 
 server_exec_unix() {
   if ! pkg screen; then

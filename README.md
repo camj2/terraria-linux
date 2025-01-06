@@ -97,6 +97,16 @@ Save and exit the server (the runit service restarts after server exit):
 terraria r
 ```
 
+### password
+
+Default password: `Server2011$`
+
+This can be changed by adding the following to `run`:
+
+```
+-p <password>
+```
+
 ## Note
 
 Terraria doesn't support
