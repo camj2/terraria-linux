@@ -68,15 +68,21 @@ server_send() {
     die "unknown message"
   fi
 
-  screen -S terraria -X stuff "say \"${1}\"\n"
+  if ! screen -S terraria -X stuff "say \"${1}\"\n"; then
+    die "server not found"
+  fi
 }
 
 server_save() {
-  screen -S terraria -X stuff "save\n"
+  if ! screen -S terraria -X stuff "save\n"; then
+    die "server not found"
+  fi
 }
 
 server_exit() {
-  screen -S terraria -X stuff "exit\n"
+  if ! screen -S terraria -X stuff "exit\n"; then
+    die "server not found"
+  fi
 }
 
 pkg() {
