@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# https://terraria.fandom.com/wiki/Server#Troubleshooting
-
 set -e
 
 GAME_EXEC=
@@ -62,11 +60,11 @@ server_send() {
 }
 
 server_save() {
-  screen -S terraria -X stuff 'save\n'
+  screen -S terraria -X stuff "save\n"
 }
 
 server_exit() {
-  screen -S terraria -X stuff 'exit\n'
+  screen -S terraria -X stuff "exit\n"
 }
 
 die() {
