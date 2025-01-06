@@ -4,10 +4,30 @@
 
 set -e
 
-GAME_HOST=$(uname -m)
 GAME_EXEC=
 GAME_SAVE=
 GAME_PASS='Server2011$' # default password
+
+server_exec_unix() {
+  exec screen -Dm -S terraria \
+    "$GAME_EXEC" \
+    -world "$GAME_SAVE" \
+    -password "$GAME_PASS" \
+    -players 10 \
+    -port 7777 \
+    -noupnp
+}
+
+server_exec_mono() {
+  exec screen -Dm -S terraria \
+    mono --server --gc=sgen -O=all \
+    "$GAME_EXEC" \
+    -world "$GAME_SAVE" \
+    -password "$GAME_PASS" \
+    -players 10 \
+    -port 7777 \
+    -noupnp
+}
 
 server_exec() {
   if [ ! -f "$GAME_EXEC" ]; then
@@ -18,24 +38,19 @@ server_exec() {
     die "save not found"
   fi
 
-  if [ "$GAME_HOST" != "x86_64" ]; then
-    exec screen -Dm -S terraria \
-      mono --server --gc=sgen -O=all \
-      "$GAME_EXEC" \
-      -world "$GAME_SAVE" \
-      -password "$GAME_PASS" \
-      -players 10 \
-      -port 7777 \
-      -noupnp
-  else
-    exec screen -Dm -S terraria \
-      "$GAME_EXEC" \
-      -world "$GAME_SAVE" \
-      -password "$GAME_PASS" \
-      -players 10 \
-      -port 7777 \
-      -noupnp
-  fi
+  GAME_EXEC_NAME="${GAME_EXEC##*/}"
+
+  case $GAME_EXEC_NAME in
+    TerrariaServer | TerrariaServer.bin.x86_64)
+      server_exec_unix
+      ;;
+    TerrariaServer.exe)
+      server_exec_mono
+      ;;
+    *)
+      die "unknown executable"
+      ;;
+  esac
 }
 
 server_send() {
