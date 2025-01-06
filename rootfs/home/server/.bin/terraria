@@ -68,7 +68,7 @@ server_send() {
     die "unknown message"
   fi
 
-  if ! screen -S terraria -X stuff "say \"${1}\"\n"; then
+  if ! screen -S terraria -X stuff "say ${1}\n"; then
     die "server not found"
   fi
 }
