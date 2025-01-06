@@ -49,7 +49,6 @@ server_exec() {
   fi
 
   GAME_EXEC_NAME="${GAME_EXEC##*/}"
-
   case $GAME_EXEC_NAME in
     TerrariaServer | TerrariaServer.bin.x86_64)
       server_exec_unix
