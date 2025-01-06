@@ -101,7 +101,7 @@ case $1 in
   s)
     server_save
     ;;
-  !)
+  r)
     server_exit
     ;;
   *)
