@@ -89,14 +89,6 @@ sv stop terraria
 
 ## `terraria`
 
-### message
-
-Send a message through the in-game chat:
-
-```
-terraria m <message>
-```
-
 ### restart
 
 Save and exit the server (the runit service restarts after server exit):

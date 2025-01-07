@@ -114,10 +114,6 @@ case $1 in
   e)
     server_cmd exit
     ;;
-  m)
-    shift
-    server_cmd say "$*"
-    ;;
   *)
     die "unknown option"
     ;;
