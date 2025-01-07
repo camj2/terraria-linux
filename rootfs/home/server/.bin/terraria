@@ -15,7 +15,7 @@ server_exec_unix() {
     "$GAME_EXEC" \
     -world "$GAME_SAVE" \
     -password "$GAME_PASS" \
-    -players 10 \
+    -players 255 \
     -port 7777 \
     -noupnp
 }
@@ -34,7 +34,7 @@ server_exec_mono() {
     "$GAME_EXEC" \
     -world "$GAME_SAVE" \
     -password "$GAME_PASS" \
-    -players 10 \
+    -players 255 \
     -port 7777 \
     -noupnp
 }
