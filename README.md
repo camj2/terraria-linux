@@ -58,9 +58,15 @@ Add the following to `/etc/nftables.conf`:
 tcp dport 7777 accept
 ```
 
-## `runit`
+## Run
 
 ### Setup
+
+Enable `runsvdir-server`:
+
+```
+ln -s /etc/sv/runsvdir-server /var/service/
+```
 
 Point `sv` to the user `runsvdir`:
 
