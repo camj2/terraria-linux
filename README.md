@@ -1,6 +1,6 @@
 # Terraria
 
-Meant to be used with [server](https://gitlab.com/camj/server).
+Meant to be used in conjunction with [server](https://gitlab.com/camj/server).
 
 ## Download
 
@@ -11,7 +11,8 @@ Copy server files to `server:~/terraria/exec/`.
 ### Bug
 
 If you encounter an
-[error](https://terraria.fandom.com/wiki/Server#Troubleshooting) when starting the server:
+[error](https://terraria.fandom.com/wiki/Server#Troubleshooting) when starting the server
+(occurs when using `mono`):
 
 ```
 rm System*
@@ -26,22 +27,17 @@ Generate the Terraria world on PC and copy to `server:~/terraria/save/Server.wld
 
 ## Void
 
-Install `screen`:
+Install packages:
 
 ```
-xbps-install screen
+xbps-install screen mono
 ```
 
-Install `mono` (not required on x86_64):
-
-```
-xbps-install mono
-```
-
-### Bug
+<details>
+<summary>Bug</summary>
 
 The aarch64 `mono` package is broken.
-As a workaround, compile `mono` from the server (instead of using the repo package):
+As a workaround, compile and install `mono` from the server (instead of using the repo package):
 
 ```
 git clone --depth 1 https://github.com/void-linux/void-packages
@@ -53,7 +49,8 @@ xbps-install -R hostdir/binpkgs/nonfree mono
 
 Check the [GitHub](https://github.com/void-linux/void-packages/issues/46881) issue for more info.
 
-### Port
+</details>
+<br>
 
 Add the following to `/etc/nftables.conf`:
 
@@ -61,7 +58,15 @@ Add the following to `/etc/nftables.conf`:
 tcp dport 7777 accept
 ```
 
-## Run
+## `runit`
+
+### Setup
+
+Point `sv` to the user `runsvdir`:
+
+```
+export SVDIR="${HOME}/.sv"
+```
 
 ### Start
 
@@ -79,7 +84,7 @@ First save the server:
 terraria s
 ```
 
-Then kill the server (after waiting a few seconds):
+Then kill the server (after waiting a few seconds for the save to complete):
 
 ```
 sv stop terraria
@@ -89,7 +94,7 @@ sv stop terraria
 
 ### Commands
 
-`x`: launch the server
+`x`: start the server
 
 `c`: open the server console (close with: `CTRL + a -> d`)
 
@@ -101,18 +106,18 @@ sv stop terraria
 
 `-x <path>`: path to the server executable
 
-`-s <path>`: path to the server world file
+`-s <path>`: path to the server `.wld` file
 
-`-p <pass>`: server password (default password: `Server2011$`)
+`-p <pass>`: server password (default: `Server2011$`)
 
-## Notes
-
-* Terraria doesn't support
-[IPv6](https://forums.terraria.org/index.php?threads/ipv6-support.104448/post-2805121).
+### Notes
 
 * Run `help` inside the console for a list of commands.
 
 * You can change the server password from the console with the `password` command.
+
+* Terraria doesn't support
+[IPv6](https://forums.terraria.org/index.php?threads/ipv6-support.104448/post-2805121).
 
 ## LICENSE
 
