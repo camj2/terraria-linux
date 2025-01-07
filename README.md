@@ -67,12 +67,6 @@ Launch the server (run as user):
 sv start terraria
 ```
 
-Save the server every midnight (optional)
-
-```
-sv start terraria-snooze
-```
-
 ### Stop
 
 First save the server:

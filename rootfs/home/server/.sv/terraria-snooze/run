@@ -1,2 +1,0 @@
-#!/bin/sh
-exec snooze -- /home/server/.bin/terraria s
