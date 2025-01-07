@@ -62,24 +62,14 @@ server_exec() {
   esac
 }
 
-server_send() {
-  if [ -z "$1" ]; then
-    die "unknown message"
-  fi
-
-  if ! screen -S terraria -X stuff "say ${1}\n"; then
+server_tty() {
+  if ! screen -S terraria -r; then
     die "server not found"
   fi
 }
 
-server_save() {
-  if ! screen -S terraria -X stuff "save\n"; then
-    die "server not found"
-  fi
-}
-
-server_exit() {
-  if ! screen -S terraria -X stuff "exit\n"; then
+server_cmd() {
+  if ! screen -S terraria -X stuff "${*}\n"; then
     die "server not found"
   fi
 }
@@ -115,15 +105,18 @@ case $1 in
   x)
     server_exec
     ;;
-  m)
-    shift
-    server_send "$*"
+  c)
+    server_tty
     ;;
   s)
-    server_save
+    server_cmd save
     ;;
-  r)
-    server_exit
+  e)
+    server_cmd exit
+    ;;
+  m)
+    shift
+    server_cmd say "$*"
     ;;
   *)
     die "unknown option"

@@ -102,7 +102,7 @@ terraria m <message>
 Save and exit the server (the runit service restarts after server exit):
 
 ```
-terraria r
+terraria e
 ```
 
 ### password
@@ -114,6 +114,18 @@ This can be changed by adding the following to `run`:
 ```
 -p <password>
 ```
+
+### console
+
+Access the server console:
+
+```
+terraria c
+```
+
+For a list of commands, run `help`.
+
+Disconnect from the console with `CTRL + a + d`.
 
 ## Note
 
