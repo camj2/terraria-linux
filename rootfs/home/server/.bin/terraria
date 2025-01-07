@@ -41,11 +41,15 @@ server_exec_mono() {
 
 server_exec() {
   if [ ! -f "$GAME_EXEC" ]; then
-    die "exec not found"
+    die "executable not found"
   fi
 
   if [ ! -f "$GAME_SAVE" ]; then
-    die "save not found"
+    die "world not found"
+  fi
+
+  if [ -z "$GAME_PASS" ]; then
+    die "password not found"
   fi
 
   GAME_EXEC_NAME="${GAME_EXEC##*/}"
