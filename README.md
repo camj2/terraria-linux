@@ -1,6 +1,6 @@
-# terraria-linux
+# Terraria
 
-Meant for [server](https://gitlab.com/camj/server).
+Meant to be used with [server](https://gitlab.com/camj/server).
 
 ## Download
 
@@ -10,7 +10,8 @@ Copy server files to `server:~/terraria/exec/`.
 
 ### Bug
 
-If you have [issues](https://terraria.fandom.com/wiki/Server#Troubleshooting) starting the server:
+If you encounter an
+[error](https://terraria.fandom.com/wiki/Server#Troubleshooting) when starting the server:
 
 ```
 rm System*
@@ -31,23 +32,16 @@ Install `screen`:
 xbps-install screen
 ```
 
-Install `mono` if not using x86_64:
+Install `mono` (not required on x86_64):
 
 ```
 xbps-install mono
 ```
 
-### Port
+### Bug
 
-Add the following to `/etc/nftables.conf`:
-
-```
-tcp dport 7777 accept
-```
-
-### [Bug](https://github.com/void-linux/void-packages/issues/46881)
-
-From the server, compile and install `mono`:
+The aarch64 `mono` package is broken.
+As a workaround, compile `mono` from the server (instead of using the repo package):
 
 ```
 git clone --depth 1 https://github.com/void-linux/void-packages
@@ -55,6 +49,16 @@ cd void-packages
 ./xbps-src binary-bootstrap
 ./xbps-src pkg mono
 xbps-install -R hostdir/binpkgs/nonfree mono
+```
+
+Check the [GitHub](https://github.com/void-linux/void-packages/issues/46881) issue for more info.
+
+### Port
+
+Add the following to `/etc/nftables.conf`:
+
+```
+tcp dport 7777 accept
 ```
 
 ## Run
@@ -83,40 +87,32 @@ sv stop terraria
 
 ## `terraria`
 
-### restart
+### Commands
 
-Save and exit the server (the runit service restarts after server exit):
+`x`: launch the server
 
-```
-terraria e
-```
+`c`: open the server console (close with: `CTRL + a -> d`)
 
-### password
+`s`: save the server
 
-Default password: `Server2011$`
+`e`: save the server and exit (this will restart the runit service)
 
-This can be changed by adding the following to `run`:
+### Flags
 
-```
--p <password>
-```
+`-x <path>`: path to the server executable
 
-### console
+`-s <path>`: path to the server world file
 
-Access the server console:
+`-p <pass>`: server password (default password: `Server2011$`)
 
-```
-terraria c
-```
+## Notes
 
-For a list of commands, run `help`.
-
-Disconnect from the console with `CTRL + a + d`.
-
-## Note
-
-Terraria doesn't support
+* Terraria doesn't support
 [IPv6](https://forums.terraria.org/index.php?threads/ipv6-support.104448/post-2805121).
+
+* Run `help` inside the console for a list of commands.
+
+* You can change the server password from the console with the `password` command.
 
 ## LICENSE
 
