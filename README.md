@@ -1,6 +1,6 @@
 # Terraria
 
-Meant to be used in conjunction with [server](https://gitlab.com/camj/server).
+Meant to be used with [server](https://github.com/camj2/server).
 
 ## Download
 
