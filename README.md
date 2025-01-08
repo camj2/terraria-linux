@@ -116,6 +116,8 @@ sv stop terraria
 
 `-p <pass>`: server password (default: `Server2011$`)
 
+`-m <motd>`: server message (default: `Welcome to the server!`)
+
 `-S <name>`: server name (default: `terraria`)
 
 `-P <port>`: server port (default: `7777`)
@@ -125,6 +127,8 @@ sv stop terraria
 * Run `help` inside the console for a list of commands.
 
 * You can change the server password from the console with the `password` command.
+
+* You can change the server message from the console with the `motd` command.
 
 * Run multiple instances by specifying `-S` and `-P`.
 

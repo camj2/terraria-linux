@@ -5,6 +5,7 @@ set -e
 GAME_EXEC=
 GAME_SAVE=
 GAME_PASS='Server2011$'
+GAME_MOTD='Welcome to the server!'
 GAME_NAME=terraria
 GAME_PORT=7777
 
@@ -17,6 +18,7 @@ server_exec_unix() {
     "$GAME_EXEC" \
     -world "$GAME_SAVE" \
     -password "$GAME_PASS" \
+    -motd "$GAME_MOTD" \
     -players 255 \
     -port "$GAME_PORT" \
     -noupnp
@@ -36,6 +38,7 @@ server_exec_mono() {
     "$GAME_EXEC" \
     -world "$GAME_SAVE" \
     -password "$GAME_PASS" \
+    -motd "$GAME_MOTD" \
     -players 255 \
     -port "$GAME_PORT" \
     -noupnp
@@ -52,6 +55,10 @@ server_exec() {
 
   if [ -z "$GAME_PASS" ]; then
     die "password not found"
+  fi
+
+  if [ -z "$GAME_MOTD" ]; then
+    die "message not found"
   fi
 
   if [ -z "$GAME_NAME" ]; then
@@ -97,7 +104,7 @@ die() {
   exit 1
 }
 
-while getopts :x:s:p:S:P opt; do
+while getopts :x:s:p:m:S:P opt; do
   case $opt in
     x)
       GAME_EXEC="$OPTARG"
@@ -107,6 +114,9 @@ while getopts :x:s:p:S:P opt; do
       ;;
     p)
       GAME_PASS="$OPTARG"
+      ;;
+    m)
+      GAME_MOTD="$OPTARG"
       ;;
     S)
       GAME_NAME="$OPTARG"
