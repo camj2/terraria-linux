@@ -82,6 +82,12 @@ Launch the server (run as user):
 sv start terraria
 ```
 
+Launch the server on startup (optional):
+
+```
+rm "${SVDIR}/terraria/down"
+```
+
 ### Stop
 
 First save the server:
