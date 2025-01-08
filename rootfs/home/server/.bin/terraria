@@ -45,11 +45,11 @@ server_exec_mono() {
 }
 
 server_exec() {
-  if [ ! -f "$GAME_EXEC" ]; then
+  if [ ! -r "$GAME_EXEC" ]; then
     die "executable not found"
   fi
 
-  if [ ! -f "$GAME_SAVE" ]; then
+  if [ ! -r "$GAME_SAVE" ]; then
     die "world not found"
   fi
 
