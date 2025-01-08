@@ -69,13 +69,13 @@ server_exec() {
 
 server_tty() {
   if ! screen -S "$GAME_NAME" -r; then
-    die "server not found"
+    die "server not running"
   fi
 }
 
 server_cmd() {
   if ! screen -S "$GAME_NAME" -X stuff "${*}\n"; then
-    die "server not found"
+    die "server not running"
   fi
 }
 
