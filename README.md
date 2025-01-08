@@ -116,11 +116,17 @@ sv stop terraria
 
 `-p <pass>`: server password (default: `Server2011$`)
 
+`-S <name>`: server name (default: `terraria`)
+
+`-P <port>`: server port (default: `7777`)
+
 ### Notes
 
 * Run `help` inside the console for a list of commands.
 
 * You can change the server password from the console with the `password` command.
+
+* Run multiple instances by specifying `-S` and `-P`.
 
 * Terraria doesn't support
 [IPv6](https://forums.terraria.org/index.php?threads/ipv6-support.104448/post-2805121).

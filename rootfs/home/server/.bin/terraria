@@ -5,18 +5,20 @@ set -e
 GAME_EXEC=
 GAME_SAVE=
 GAME_PASS='Server2011$'
+GAME_NAME=terraria
+GAME_PORT=7777
 
 server_exec_unix() {
   if ! pkg screen; then
     die "screen not installed"
   fi
 
-  exec screen -Dm -S terraria \
+  exec screen -Dm -S "$GAME_NAME" \
     "$GAME_EXEC" \
     -world "$GAME_SAVE" \
     -password "$GAME_PASS" \
     -players 255 \
-    -port 7777 \
+    -port "$GAME_PORT" \
     -noupnp
 }
 
@@ -29,13 +31,13 @@ server_exec_mono() {
     die "mono not installed"
   fi
 
-  exec screen -Dm -S terraria \
+  exec screen -Dm -S "$GAME_NAME" \
     mono --server --gc=sgen -O=all \
     "$GAME_EXEC" \
     -world "$GAME_SAVE" \
     -password "$GAME_PASS" \
     -players 255 \
-    -port 7777 \
+    -port "$GAME_PORT" \
     -noupnp
 }
 
@@ -50,6 +52,14 @@ server_exec() {
 
   if [ -z "$GAME_PASS" ]; then
     die "password not found"
+  fi
+
+  if [ -z "$GAME_NAME" ]; then
+    die "screen not found"
+  fi
+
+  if [ -z "$GAME_PORT" ]; then
+    die "port not found"
   fi
 
   GAME_EXEC_NAME="${GAME_EXEC##*/}"
@@ -67,13 +77,13 @@ server_exec() {
 }
 
 server_tty() {
-  if ! screen -S terraria -r; then
+  if ! screen -S "$GAME_NAME" -r; then
     die "server not found"
   fi
 }
 
 server_cmd() {
-  if ! screen -S terraria -X stuff "${*}\n"; then
+  if ! screen -S "$GAME_NAME" -X stuff "${*}\n"; then
     die "server not found"
   fi
 }
@@ -87,7 +97,7 @@ die() {
   exit 1
 }
 
-while getopts :x:s:p opt; do
+while getopts :x:s:p:S:P opt; do
   case $opt in
     x)
       GAME_EXEC="$OPTARG"
@@ -97,6 +107,12 @@ while getopts :x:s:p opt; do
       ;;
     p)
       GAME_PASS="$OPTARG"
+      ;;
+    S)
+      GAME_NAME="$OPTARG"
+      ;;
+    P)
+      GAME_PORT="$OPTARG"
       ;;
     *)
       die "unknown option"
