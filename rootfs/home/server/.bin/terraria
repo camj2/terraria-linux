@@ -53,22 +53,6 @@ server_exec() {
     die "world not found"
   fi
 
-  if [ -z "$GAME_PASS" ]; then
-    die "password not found"
-  fi
-
-  if [ -z "$GAME_MOTD" ]; then
-    die "message not found"
-  fi
-
-  if [ -z "$GAME_NAME" ]; then
-    die "screen not found"
-  fi
-
-  if [ -z "$GAME_PORT" ]; then
-    die "port not found"
-  fi
-
   GAME_EXEC_NAME="${GAME_EXEC##*/}"
   case $GAME_EXEC_NAME in
     TerrariaServer | TerrariaServer.bin.x86_64)
