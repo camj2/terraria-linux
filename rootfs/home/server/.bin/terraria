@@ -6,8 +6,8 @@ GAME_EXEC=
 GAME_SAVE=
 GAME_PASS='Server2011$'
 GAME_MOTD='Welcome to the server!'
-GAME_NAME=terraria
-GAME_PORT=7777
+GAME_NAME='terraria'
+GAME_PORT='7777'
 
 server_exec_unix() {
   if ! pkg screen; then
