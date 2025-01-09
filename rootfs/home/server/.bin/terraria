@@ -134,6 +134,9 @@ case $1 in
   e)
     server_cmd exit
     ;;
+  !)
+    server_cmd exit-nosave
+    ;;
   *)
     die "unknown option"
     ;;

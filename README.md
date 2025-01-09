@@ -114,6 +114,8 @@ sv stop terraria
 
 `e`: save the server and exit (this will restart the runit service)
 
+`!`: exit the server (this will restart the runit service)
+
 ### Flags
 
 `-x <path>`: path to the server executable
