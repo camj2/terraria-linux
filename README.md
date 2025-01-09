@@ -128,6 +128,8 @@ sv stop terraria
 
 `-P <port>`: server port (default: `7777`)
 
+`-B <bind>`: server address (default: `0.0.0.0`)
+
 ### Notes
 
 * Run `help` inside the console for a list of commands.
@@ -136,7 +138,7 @@ sv stop terraria
 
 * You can change the server message from the console with the `motd` command.
 
-* Run multiple instances by specifying `-S` and `-P`.
+* Run multiple instances by specifying `-S` and `-P` / `-B`.
 
 * Terraria doesn't support
 [IPv6](https://forums.terraria.org/index.php?threads/ipv6-support.104448/post-2805121).

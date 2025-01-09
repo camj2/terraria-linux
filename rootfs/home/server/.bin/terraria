@@ -8,6 +8,7 @@ GAME_PASS='Server2011$'
 GAME_MOTD='Welcome to the server!'
 GAME_NAME='terraria'
 GAME_PORT='7777'
+GAME_BIND='0.0.0.0'
 
 server_exec_unix() {
   if ! pkg screen; then
@@ -21,6 +22,7 @@ server_exec_unix() {
     -motd "$GAME_MOTD" \
     -players 255 \
     -port "$GAME_PORT" \
+    -ip "$GAME_BIND" \
     -noupnp
 }
 
@@ -41,6 +43,7 @@ server_exec_mono() {
     -motd "$GAME_MOTD" \
     -players 255 \
     -port "$GAME_PORT" \
+    -ip "$GAME_BIND" \
     -noupnp
 }
 
@@ -88,7 +91,7 @@ die() {
   exit 1
 }
 
-while getopts :x:s:p:m:S:P opt; do
+while getopts :x:s:p:m:S:P:B opt; do
   case $opt in
     x)
       GAME_EXEC="$OPTARG"
@@ -107,6 +110,9 @@ while getopts :x:s:p:m:S:P opt; do
       ;;
     P)
       GAME_PORT="$OPTARG"
+      ;;
+    B)
+      GAME_BIND="$OPTARG"
       ;;
     *)
       die "unknown option"
