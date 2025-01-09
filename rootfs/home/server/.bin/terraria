@@ -91,7 +91,7 @@ die() {
   exit 1
 }
 
-while getopts :x:s:p:m:S:P:B opt; do
+while getopts x:s:p:m:S:P:B: opt; do
   case $opt in
     x)
       GAME_EXEC="$OPTARG"
