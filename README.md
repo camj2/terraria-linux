@@ -58,6 +58,12 @@ Add the following to `/etc/nftables.conf`:
 tcp dport 7777 accept
 ```
 
+Add the following to `~/.zshrc` (optional):
+
+```
+alias t=terraria
+```
+
 ## Run
 
 ### Setup
