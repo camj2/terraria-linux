@@ -1,4 +1,4 @@
 all:
-	@./check rootfs
+	@./fmt.sh rootfs
 
 .PHONY: all
