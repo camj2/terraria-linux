@@ -88,7 +88,7 @@ Launch the server (run as user):
 sv start terraria
 ```
 
-Launch the server on startup (optional):
+Launch the server on startup (optional, **not recommended for systems without an RTC clock**):
 
 ```
 rm "${SVDIR}/terraria/down"
